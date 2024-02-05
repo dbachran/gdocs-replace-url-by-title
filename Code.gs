@@ -13,10 +13,6 @@ function replaceURLByTitle() {
     // Get the link as an object
     var linkElement = link.getElement().asText()
 
-    // var fixmeLinkPartial = link.isPartial()
-    // var fixmeLinkStart = link.getStartOffset()
-    // var fixmeLinkEnd = link.getEndOffsetInclusive()
-
     if (link.isPartial()) {
       var linkText = linkElement.getLinkUrl(link.getStartOffset())
     } else {
@@ -51,11 +47,6 @@ function replaceURLByTitle() {
       linkElement.deleteText(start, end)
       linkElement.insertText(start, title)
 
-      // var fixmeText = linkElement.getText()
-      // var fixmeTextLength = fixmeText.length
-      // var fixmeTitleLength = title.length
-      // var fixmeAtts2 = linkElement.getAttributes()
-
       // restore original element attributes (e.g. if whole element text has been removed
       // and new text gets attributes of previous element by default)
       linkElement.setAttributes(originalAttributes)
@@ -64,8 +55,6 @@ function replaceURLByTitle() {
       // (needs to be inserted after original element attributes have been restored,
       // which may not include a link if the link did not cover the whole element)
       linkElement.setLinkUrl(start, start + title.length - 1, linkText)
-
-      // var fixmeAtts3Final = linkElement.getAttributes()
     } else {
       Logger.log("No title found for " + linkText + ", skipped")
     }
